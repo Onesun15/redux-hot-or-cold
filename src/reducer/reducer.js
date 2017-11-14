@@ -16,10 +16,7 @@ export const addGuessReducer = ((state=initialState, action) => {
     })
   }
   if(action.type === UPDATE_FEEDBACK) {
-    console.log('===action.guess', action.guess);
-    console.log('===state.correctAnswer', state.correctAnswer);
     const difference = Math.abs(action.guess - state.correctAnswer);
-    console.log('===difference', difference);
     let feedback;
 
     if (difference >= 50) {
