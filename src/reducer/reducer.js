@@ -6,6 +6,7 @@ const initialState = {
   guesses: [],
   feedback: 'Make your guess!',
   correctAnswer: Math.floor(Math.random() * 100) + 1,
+  modalToggle: false
 }
 
 export const addGuessReducer = ((state=initialState, action) => {
@@ -19,6 +20,17 @@ export const addGuessReducer = ((state=initialState, action) => {
       feedback: action.feedback
     })
   }
+  if(action.type === TOGGLE_MODAL) {
+    return Object.assign({}, state, {
+      modalToggle: !state.modalToggle
+    })
+  }
+  if(action.type === NEW_GAME) {
+    return Object.assign({}, initialState, {
+      correctAnswer: action.correctAnswer
+    })
+  }
+
   return state;
 
 });

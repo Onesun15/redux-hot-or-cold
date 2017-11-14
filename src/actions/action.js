@@ -1,8 +1,3 @@
-//Add number to state.guesses
-//Update feedback changes state.feedback
-//New game click, resets state to intial state
-//Toggle action of modal true or false
-
 export const ADD_GUESS = 'ADD_GUESS';
 export const addGuess = guess => ({
   type: ADD_GUESS,
@@ -15,13 +10,13 @@ export const updateFeedback = feedback => ({
   feedback
 });
 
-// export const TOGGLE_MODAL = 'TOGGLE_MODAL';
-// export const toggleModal = toggle => ({
-//   type: TOGGLE_MODAL,
-//   toggle
-// });
+export const TOGGLE_MODAL = 'TOGGLE_MODAL';
+export const toggleModal = () => ({
+  type: TOGGLE_MODAL,
+});
 
-// export const NEW_GAME = 'NEW_GAME';
-// export const newGame = () => ({
-//   type: NEW_GAME
-// });
+export const NEW_GAME = 'NEW_GAME';
+export const newGame = () => ({
+  type: NEW_GAME,
+  correctAnswer: Math.round(Math.random() * 100)
+});
