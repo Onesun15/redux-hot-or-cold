@@ -5,9 +5,8 @@ export const addGuess = guess => ({
 });
 
 export const UPDATE_FEEDBACK = 'UPDATE_FEEDBACK';
-export const updateFeedback = feedback => ({
+export const updateFeedback = guess => ({
   type: UPDATE_FEEDBACK,
-  feedback
 });
 
 export const TOGGLE_MODAL = 'TOGGLE_MODAL';
