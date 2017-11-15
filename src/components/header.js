@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux'
 
 import TopNav from './top-nav';
 import InfoModal from './info-modal';
@@ -7,12 +6,9 @@ import InfoModal from './info-modal';
 import './header.css';
 
 export class Header extends React.Component  {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showInfoModal: false
-        };
-    }
+    state = {
+        showInfoModal: false
+    };
 
     toggleInfoModal() {
         this.setState({
@@ -20,25 +16,27 @@ export class Header extends React.Component  {
         });
     }
 
-    render() {
-        let infoModal;
-        if (this.props.modalToggle) {
-            infoModal = <InfoModal onClose={() => this.toggleInfoModal()} />;
-        }
 
+  _getInfoModal = () => {
+    if (this.props.modalToggle) {
+      return <InfoModal onClose={() => this.toggleInfoModal()} />
+    }
+
+    return null
+  }
+
+
+  // Render is really bad for side effects 
+  render() {
         return (
             <header>
                 <TopNav onInfo={() => this.toggleInfoModal()}
                     onNewGame={this.props.onNewGame} />
-                {infoModal}
+                {this._getInfoModal()}
                 <h1>HOT or COLD</h1>
             </header>
         );
     }
 };
 
-const mapStoreToProps = state => ({
-    modalToggle: state.modalToggle
-});
-
-export default connect(mapStoreToProps)(Header)
+export default Header

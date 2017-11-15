@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux'
 
 import GuessForm from './guess-form';
 
@@ -14,8 +13,4 @@ export function GuessSection(props) {
     );
 }
 
-const mapStoreToProps = state => ({
-    feedback: state.feedback
-})
-
-export default connect(mapStoreToProps)(GuessSection)
+export default GuessSection
