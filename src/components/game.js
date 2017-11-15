@@ -1,13 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Header from './header';
 import GuessSection from './guess-section';
 import GuessCount  from './guess-count';
 import GuessList from './guess-list';
 
-export default class Game extends React.Component {
-    constructor(props) {
-        super(props);
+class Game extends React.Component {
+    constructor() {
+        super();
         this.state = {
             guesses: [],
             feedback: 'Make your guess!',
@@ -60,13 +61,20 @@ export default class Game extends React.Component {
     render() {
         return (
             <div>
-                <Header onNewGame={() => this.newGame()}/>
-                <GuessSection feedback={this.state.feedback}
+                <Header modalToggle={this.props.modalToggle} onNewGame={() => this.newGame()}/>
+                <GuessSection feedback={this.props.feedback}
                     onGuess={(guess) => this.guess(guess)} />
-                <GuessCount count={this.state.guesses.length} />
+                <GuessCount count={this.props.guesses.length} />
                 <GuessList guesses={this.state.guesses} />
             </div>
         );
     }
 }
 
+const mapStateToProps = (state) => ({
+  modalToggle: state.modalToggle,
+  guesses: state.guesses,
+  feedback: state.feedback
+})
+
+export default connect(mapStateToProps)(Game)
